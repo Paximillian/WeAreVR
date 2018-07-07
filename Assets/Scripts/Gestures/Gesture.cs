@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Events;
 
 public class Gesture : ScriptableObject, IEnumerable<GesturePose>, IEnumerator<GesturePose>
 {
@@ -10,10 +11,14 @@ public class Gesture : ScriptableObject, IEnumerable<GesturePose>, IEnumerator<G
     private const float k_AcceptableRotDeltaThreshold = 10f;
 
     [SerializeField]
+    private Spell m_RepresentedSpell;
+    public Spell RepresentedSpell { get { return m_RepresentedSpell; } set { m_RepresentedSpell = value; } }
+
+    [SerializeField]
     [ReadOnly]
     private AnimationCurve m_XPosCurve;
     public AnimationCurve XPosCurve { get { return m_XPosCurve; } set { m_XPosCurve = value; } }
-
+    
     [SerializeField]
     [ReadOnly]
     private AnimationCurve m_YPosCurve;
@@ -56,6 +61,11 @@ public class Gesture : ScriptableObject, IEnumerable<GesturePose>, IEnumerator<G
     /// </summary>
     public bool IsSimilarTo(Gesture i_OtherGesture)
     {
+        return SimilarityScoreAgainst(i_OtherGesture) < 0.35f;
+    }
+
+    public double SimilarityScoreAgainst(Gesture i_OtherGesture)
+    {
         Reset();
         List<GesturePose> poses = this.ToList();
         i_OtherGesture.Reset();
@@ -82,13 +92,9 @@ public class Gesture : ScriptableObject, IEnumerable<GesturePose>, IEnumerator<G
         double wRotDist = Algorithms.FrechetDistance(poses.Select(pose => new double[2] { pose.Time, pose.Rotation.w }).ToList(),
                                                      otherPoses.Select(pose => new double[2] { pose.Time, pose.Rotation.w }).ToList());
 
-        return xPosDist < 0.75f &&
-               yPosDist < 0.75f &&
-               zPosDist < 0.75f &&
-               xRotDist < 0.75f &&
-               yRotDist < 0.75f &&
-               zRotDist < 0.75f &&
-               wRotDist < 0.75f;
+        //Debug.Log(i_OtherGesture.name + (xPosDist + yPosDist + zPosDist + xRotDist + yRotDist + zRotDist + wRotDist) / 7);
+
+        return (xPosDist + yPosDist + zPosDist + xRotDist + yRotDist + zRotDist + wRotDist) / 7;
     }
 
     public GesturePose this[int i]

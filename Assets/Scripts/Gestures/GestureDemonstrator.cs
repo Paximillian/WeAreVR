@@ -6,9 +6,13 @@ public class GestureDemonstrator : MonoBehaviour
 {
     [SerializeField]
     private Gesture m_Gesture;
+    
+    private Vector3 m_BasePosition;
 
     private void Awake()
     {
+        m_BasePosition = transform.localPosition;
+
         StartCoroutine(playbackGesture());
     }
 
@@ -16,8 +20,8 @@ public class GestureDemonstrator : MonoBehaviour
     {
         for (int i = 0; i < m_Gesture.XPosCurve.length; ++i)
         {
-            transform.position = new Vector3(m_Gesture.XPosCurve[i].value, m_Gesture.YPosCurve[i].value, m_Gesture.ZPosCurve[i].value);
-            transform.rotation = new Quaternion(m_Gesture.XRotCurve[i].value + m_Gesture.BaseRotation.x,
+            transform.localPosition = new Vector3(m_Gesture.XPosCurve[i].value, m_Gesture.YPosCurve[i].value, m_Gesture.ZPosCurve[i].value) + m_BasePosition;
+            transform.localRotation = new Quaternion(m_Gesture.XRotCurve[i].value + m_Gesture.BaseRotation.x,
                                                 m_Gesture.YRotCurve[i].value + m_Gesture.BaseRotation.y,
                                                 m_Gesture.ZRotCurve[i].value + m_Gesture.BaseRotation.z,
                                                 m_Gesture.WRotCurve[i].value + m_Gesture.BaseRotation.w);

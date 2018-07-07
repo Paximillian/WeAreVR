@@ -18,6 +18,8 @@ public abstract class GestureHandler : MonoBehaviour
     private Quaternion BaseRotation;
     private Vector3 BasePosition;
 
+    private bool m_LastButtonState = false;
+
     protected Gesture RecordedGesture { get; private set; }
 
     private Coroutine m_RecordingCoroutine;
@@ -27,14 +29,17 @@ public abstract class GestureHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown(m_ButtonName))
+        if (Input.GetButtonDown(m_ButtonName) || (!m_LastButtonState && Input.GetAxis(m_ButtonName) == 1))
         {
+            m_LastButtonState = true;
             m_RecordingCoroutine = StartCoroutine(recordTracking());
         }
-        else if (Input.GetButtonUp(m_ButtonName))
+        else if (Input.GetButtonUp(m_ButtonName) || (m_LastButtonState && Input.GetAxis(m_ButtonName) == 0))
         {
+            m_LastButtonState = false;
+
             StopCoroutine(m_RecordingCoroutine);
-            
+
             RecordedGesture = Gesture.CreateInstance<Gesture>();
             RecordedGesture.BasePosition = BasePosition;
             RecordedGesture.BaseRotation = BaseRotation;
