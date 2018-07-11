@@ -7,6 +7,14 @@ using UnityEngine.Events;
 
 public class Gesture : ScriptableObject, IEnumerable<GesturePose>, IEnumerator<GesturePose>
 {
+    [Flags]
+    public enum eAccuracyLevel
+    {
+        Position = 1,
+        Rotation = 2,
+        All = 3
+    }
+
     private const float k_AcceptablePosDeltaThreshold = 0.1f;
     private const float k_AcceptableRotDeltaThreshold = 10f;
 
@@ -59,12 +67,12 @@ public class Gesture : ScriptableObject, IEnumerable<GesturePose>, IEnumerator<G
     /// <summary>
     /// Compares this gesture to the given one and returns a value between 0-1 indicating the match rate of the 2.
     /// </summary>
-    public bool IsSimilarTo(Gesture i_OtherGesture)
+    public bool IsSimilarTo(Gesture i_OtherGesture, eAccuracyLevel i_Accuracy)
     {
-        return SimilarityScoreAgainst(i_OtherGesture) < 0.35f;
+        return SimilarityScoreAgainst(i_OtherGesture, i_Accuracy) < 0.35f;
     }
 
-    public double SimilarityScoreAgainst(Gesture i_OtherGesture)
+    public double SimilarityScoreAgainst(Gesture i_OtherGesture, eAccuracyLevel i_Accuracy)
     {
         Reset();
         List<GesturePose> poses = this.ToList();
@@ -94,7 +102,17 @@ public class Gesture : ScriptableObject, IEnumerable<GesturePose>, IEnumerator<G
 
         //Debug.Log(i_OtherGesture.name + (xPosDist + yPosDist + zPosDist + xRotDist + yRotDist + zRotDist + wRotDist) / 7);
 
-        return (xPosDist + yPosDist + zPosDist + xRotDist + yRotDist + zRotDist + wRotDist) / 7;
+        switch (i_Accuracy)
+        {
+            case eAccuracyLevel.All:
+                return (xPosDist + yPosDist + zPosDist + xRotDist + yRotDist + zRotDist + wRotDist) / 7;
+            case eAccuracyLevel.Position:
+                return (xPosDist + yPosDist + zPosDist) / 3;
+            case eAccuracyLevel.Rotation:
+                return (xRotDist + yRotDist + zRotDist + wRotDist) / 4;
+        }
+
+        return Mathf.Infinity;
     }
 
     public GesturePose this[int i]

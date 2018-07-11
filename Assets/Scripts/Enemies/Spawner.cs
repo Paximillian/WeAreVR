@@ -6,7 +6,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_Enemy;
+    private Enemy m_Enemy;
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            GameObject enemy = Instantiate(m_Enemy, transform.position, Quaternion.identity);
+            Enemy enemy = Instantiate(m_Enemy, transform.position, Quaternion.identity);
             enemy.transform.LookAt(Camera.main.transform);
             enemy.transform.forward = Vector3.ProjectOnPlane(enemy.transform.forward, Vector3.up);
             yield return new WaitForSeconds(5);
