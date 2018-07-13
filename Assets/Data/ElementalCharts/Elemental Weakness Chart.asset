@@ -11,3 +11,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5c8a94250a36245b79b0466908f0af, type: 3}
   m_Name: Elemental Weakness Chart
   m_EditorClassIdentifier: 
+  m_ElementalWeaknessKeys:
+  - {fileID: 11400000, guid: 86efae449ff232441b653674f2c8b60c, type: 2}
+  - {fileID: 11400000, guid: efa7405d9cd08a1438c4e8b21822d489, type: 2}
+  - {fileID: 11400000, guid: 2805456aeb0a7724dbaaaadd57d206ed, type: 2}
+  - {fileID: 11400000, guid: de8845f1ea8730c42a4d2a5c35916876, type: 2}
+  - {fileID: 11400000, guid: 3fc6c526916bf5546ab552299cc21ef8, type: 2}
+  m_ElementsWeakToIndexValues:
+  - Elements:
+    - {fileID: 11400000, guid: de8845f1ea8730c42a4d2a5c35916876, type: 2}
+  - Elements:
+    - {fileID: 11400000, guid: de8845f1ea8730c42a4d2a5c35916876, type: 2}
+  - Elements:
+    - {fileID: 11400000, guid: de8845f1ea8730c42a4d2a5c35916876, type: 2}
+  - Elements:
+    - {fileID: 11400000, guid: de8845f1ea8730c42a4d2a5c35916876, type: 2}
+  - Elements:
+    - {fileID: 11400000, guid: 2805456aeb0a7724dbaaaadd57d206ed, type: 2}
+    - {fileID: 11400000, guid: de8845f1ea8730c42a4d2a5c35916876, type: 2}
+  m_ElementsIndexWeakToValues:
+  - Elements: []
+  - Elements: []
+  - Elements:
+    - {fileID: 11400000, guid: 3fc6c526916bf5546ab552299cc21ef8, type: 2}
+  - Elements:
+    - {fileID: 11400000, guid: 86efae449ff232441b653674f2c8b60c, type: 2}
+    - {fileID: 11400000, guid: efa7405d9cd08a1438c4e8b21822d489, type: 2}
+    - {fileID: 11400000, guid: 2805456aeb0a7724dbaaaadd57d206ed, type: 2}
+    - {fileID: 11400000, guid: de8845f1ea8730c42a4d2a5c35916876, type: 2}
+    - {fileID: 11400000, guid: 3fc6c526916bf5546ab552299cc21ef8, type: 2}
+  - Elements: []

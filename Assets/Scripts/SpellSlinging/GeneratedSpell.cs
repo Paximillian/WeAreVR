@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneratedSpell : Spell
+public abstract class GeneratedSpell : Spell
 {
     protected ElementSelectionSpell SpellElement { get; private set; }
 

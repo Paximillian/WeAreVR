@@ -8,7 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57bc997243fcd7d47b44826aab3a7122, type: 3}
-  m_Name: NoElementSpell
+  m_Script: {fileID: 11500000, guid: e75a8dfb12b72314abca00397c46f82e, type: 3}
+  m_Name: SlashFormSpell
   m_EditorClassIdentifier: 
-  m_NoElementMaterial: {fileID: 2100000, guid: dfa93eb3d91236b45a4964d46d84cf00, type: 2}

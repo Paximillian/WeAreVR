@@ -5,4 +5,5 @@ using UnityEngine;
 
 public abstract class ElementSelectionSpell : Spell
 {
+    public string ElementName { get { return name.Replace("Spell", "").Replace("Element", ""); } }
 }

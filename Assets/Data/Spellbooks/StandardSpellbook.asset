@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: StandardSpellbook
   m_EditorClassIdentifier: 
   Spells:
-  - m_SpellName: Bubble
+  - m_SpellName: Water Bubble
     m_ElementSpell: {fileID: 11400000, guid: 3fc6c526916bf5546ab552299cc21ef8, type: 2}
     m_FormSpell: {fileID: 11400000, guid: 16d6ef7516dcbf04a8c882eeef94957f, type: 2}
     m_ResultSpell: {fileID: 11400000, guid: 2ea104c4bd8a42147ac725c5bc0bd044, type: 2}
+  - m_SpellName: Wind Slash
+    m_ElementSpell: {fileID: 11400000, guid: 86efae449ff232441b653674f2c8b60c, type: 2}
+    m_FormSpell: {fileID: 11400000, guid: cb6d2fe030577624bb7c1d894555915a, type: 2}
+    m_ResultSpell: {fileID: 11400000, guid: b085843c394b1c04ab0c2e13fa6fcd58, type: 2}

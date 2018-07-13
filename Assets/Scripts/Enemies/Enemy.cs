@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
             {
                 m_Animator.SetTrigger("Death");
             }
+
+            Destroy(other.gameObject);
         }
     }
 }
